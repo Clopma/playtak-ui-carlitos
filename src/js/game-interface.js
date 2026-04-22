@@ -389,6 +389,8 @@ function formatTime(time){
 function clearNotationMenu(){
 	const tbl = document.getElementById("moveslist");
 	while(tbl.rows.length > 0){tbl.deleteRow(0);}
+	document.getElementById("time-increment-rule").innerHTML = '';
+	document.getElementById("time-increment").style.display = "none";
 	document.getElementById("extra-time-rule").innerHTML = '';
 	document.getElementById("extra-time").style.display = "none";
 	$('#draw').removeClass('i-offered-draw').removeClass('opp-offered-draw').addClass('offer-draw');
