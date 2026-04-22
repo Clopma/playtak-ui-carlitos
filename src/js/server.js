@@ -515,7 +515,7 @@ var server = {
 			gameData.unrated = +spl[13];
 			gameData.tournament = +spl[14];
 			gameData.triggerMove = +spl[15];
-			gameData.timeAmount = +spl[16];
+			gameData.extraTimeAmount = +spl[16];
 			gameData.bot = +spl[17];
 			gameData.is_scratch = false;
 			gameData.observing = false;
@@ -618,7 +618,7 @@ var server = {
 			gameData.unrated = +spl[10];
 			gameData.tournament = +spl[11];
 			gameData.triggerMove = +spl[12];
-			gameData.timeAmount = +spl[13];
+			gameData.extraTimeAmount = +spl[13];
 			gameData.bot = 1;
 			gameData.observing = true;
 			gameData.is_scratch = false;
@@ -1109,7 +1109,7 @@ var server = {
 		$('<td/>').append('+'+Math.floor(game.komi/2)+"."+(game.komi&1?"5":"0")).addClass("right komi-rule").attr("data-toggle", "tooltip").attr("title","Komi - If the game ends without a road, black will get this number on top of their flat count when the winner is determined").appendTo(row);
 		$('<td/>').append(game.pieces+"/"+game.capstones).addClass("right hide-sm").attr("data-toggle", "tooltip").attr("title","Stone count - The number of stones/capstones that each player has in this game").appendTo(row);
 		$('<td/>').append(gameType).addClass("right hide-sm").attr("data-toggle", "tooltip").attr("title", gameTypeText).appendTo(row);
-		$("<td/>").append(game.triggerMove + "/+" + parseInt(game.timeAmount)).addClass("right hide-sm").attr("data-toggle", "tooltip").attr("title", "Trigger move and extra time to add in minutes").appendTo(row);
+		$("<td/>").append(game.triggerMove + "/+" + parseInt(game.extraTimeAmount)).addClass("right hide-sm").attr("data-toggle", "tooltip").attr("title", "Trigger move and extra time to add in minutes").appendTo(row);
 
 		const dropdownButton = document.createElement("button");
 		dropdownButton.className = "btn btn-transparent dropdown-toggle";
@@ -1167,7 +1167,7 @@ var server = {
 		// extra time
 		const extraTimeItem = document.createElement("span");
 		extraTimeItem.className = "dropdown-item";
-		extraTimeItem.innerHTML = `<strong>Extra Time:</strong> +${game.timeAmount} minutes`;
+		extraTimeItem.innerHTML = `<strong>Extra Time:</strong> +${game.extraTimeAmount} minutes`;
 		dropdownMenu.appendChild(extraTimeItem);
 		// create  dropdown div with dropdown class
 		const dropdownDiv = document.createElement("div");
@@ -1635,7 +1635,7 @@ var server = {
 			}
 			// swap the player color for the new seek
 			const newColor = game.my_color === "black" ? "W" : "B";
-			this.send(`Rematch ${game.id} ${game.size} ${game.time} ${game.increment} ${newColor} ${game.komi} ${game.pieces} ${game.capstones} ${game.unrated} ${game.tournament} ${game.triggerMove} ${game.timeAmount} ${game.opponent}`);
+			this.send(`Rematch ${game.id} ${game.size} ${game.time} ${game.increment} ${newColor} ${game.komi} ${game.pieces} ${game.capstones} ${game.unrated} ${game.tournament} ${game.triggerMove} ${game.extraTimeAmount} ${game.opponent}`);
 			document.getElementById("rematch").setAttribute("disabled", "disabled");
 			document.getElementById('createSeek').setAttribute("disabled", "disabled");
 			document.getElementById("removeSeek").setAttribute("hidden", "true");

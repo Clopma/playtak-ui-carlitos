@@ -16,7 +16,7 @@ let gameData = {
 	unrated: false,
 	tournament: false,
 	triggerMove: 0,
-	timeAmount: 0,
+	extraTimeAmount: 0,
 	bot: 0,
 	is_scratch: true,
 	observing: false,
@@ -64,7 +64,7 @@ function resetGameDataToDefault(){
 		unrated: false,
 		tournament: false,
 		triggerMove: 0,
-		timeAmount: 0,
+		extraTimeAmount: 0,
 		bot: 0,
 		is_scratch: true,
 		observing: false,
@@ -122,12 +122,14 @@ function initBoard(){
 
 	if(gameData.increment > 0){
 		document.getElementById("time-increment").style.display = 'block';
+		document.getElementById("time-increment-rule").style.display = 'block';
 		document.getElementById("time-increment-rule").innerHTML = `+${gameData.increment}`;
 	}
 
-	if(gameData.triggerMove > 0){
+	if(gameData.triggerMove > 0 && gameData.extraTimeAmount > 0){
 		document.getElementById("extra-time").style.display = 'block';
-		document.getElementById("extra-time-rule").innerHTML = `${gameData.triggerMove}/+${gameData.timeAmount/60}`;
+		document.getElementById("extra-time-rule").style.display = 'block';
+		document.getElementById("extra-time-rule").innerHTML = `${gameData.triggerMove}/+${gameData.extraTimeAmount/60}`;
 	}
 	// reset the game data and set new values
 	if(!is2DBoard){
@@ -390,8 +392,11 @@ function clearNotationMenu(){
 	const tbl = document.getElementById("moveslist");
 	while(tbl.rows.length > 0){tbl.deleteRow(0);}
 	document.getElementById("time-increment-rule").innerHTML = '';
+	document.getElementById("time-increment-rule").style.display = "none";
 	document.getElementById("time-increment").style.display = "none";
+
 	document.getElementById("extra-time-rule").innerHTML = '';
+	document.getElementById("extra-time-rule").style.display = "none";
 	document.getElementById("extra-time").style.display = "none";
 	$('#draw').removeClass('i-offered-draw').removeClass('opp-offered-draw').addClass('offer-draw');
 	stopTime();
