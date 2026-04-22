@@ -653,7 +653,7 @@ var server = {
 				unrated: spl[11] == 1,
 				tournament: spl[12] == 1,
 				triggerMove: spl[13],
-				timeAmount: parseInt(spl[14]) / 60
+				extraTimeAmount: parseInt(spl[14]) / 60
 			};
 			this.gameslist.push(game);
 			this.addGameToWatchList(game);
