@@ -16,7 +16,7 @@ let gameData = {
 	unrated: false,
 	tournament: false,
 	triggerMove: 0,
-	extraTimeAmount: 0,
+	timeAmount: 0,
 	bot: 0,
 	is_scratch: true,
 	observing: false,
@@ -64,7 +64,7 @@ function resetGameDataToDefault(){
 		unrated: false,
 		tournament: false,
 		triggerMove: 0,
-		extraTimeAmount: 0,
+		timeAmount: 0,
 		bot: 0,
 		is_scratch: true,
 		observing: false,
@@ -126,10 +126,10 @@ function initBoard(){
 		document.getElementById("time-increment-rule").innerHTML = `+${gameData.increment}`;
 	}
 
-	if(gameData.triggerMove > 0 && gameData.extraTimeAmount > 0){
+	if(gameData.triggerMove > 0 && gameData.timeAmount > 0){
 		document.getElementById("extra-time").style.display = 'block';
 		document.getElementById("extra-time-rule").style.display = 'block';
-		document.getElementById("extra-time-rule").innerHTML = `${gameData.triggerMove}/+${gameData.extraTimeAmount/60}`;
+		document.getElementById("extra-time-rule").innerHTML = `${gameData.triggerMove}/+${gameData.timeAmount/60}`;
 	}
 	// reset the game data and set new values
 	if(!is2DBoard){
